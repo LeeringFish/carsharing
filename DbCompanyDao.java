@@ -9,7 +9,7 @@ public class DbCompanyDao implements CompanyDao {
             "NAME VARCHAR UNIQUE NOT NULL)";
     private static final String SELECT_ALL = "SELECT * FROM COMPANY";
     private static final String SELECT = "SELECT * FROM COMPANY WHERE id = %d";
-    private static final String INSERT_DATA = "INSERT INTO COMPANY VALUES (%d, '%s')";
+    private static final String INSERT_DATA = "INSERT INTO COMPANY (name) VALUES ('%s')";
     private static final String UPDATE_DATA = "UPDATE COMPANY SET name " +
             "= '%s' WHERE id = %d";
     private static final String DELETE_DATA = "DELETE FROM COMPANY WHERE id = %d";
@@ -23,7 +23,7 @@ public class DbCompanyDao implements CompanyDao {
 
     @Override
     public void add(Company company) {
-        db.run(String.format(INSERT_DATA, company.getId(), company.getName()));
+        db.run(String.format(INSERT_DATA, company.getName()));
     }
 
     @Override

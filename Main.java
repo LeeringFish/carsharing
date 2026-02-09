@@ -1,5 +1,7 @@
 package carsharing;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -11,7 +13,9 @@ public class Main {
             fileName = "test";
         }
 
-        Database db = new Database(fileName);
-        db.createTable();
+        Scanner scan = new Scanner(System.in);
+        CompanyDao companyDao = new DbCompanyDao(fileName);
+        UserInterface ui = new UserInterface(scan, companyDao);
+        ui.run();
     }
 }

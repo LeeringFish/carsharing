@@ -7,9 +7,8 @@ import java.util.List;
 public class Database {
     private final String DB_URL;
 
-    public Database(String fileName) {
-        DB_URL = "jdbc:h2:~/IdeaProjects/Car Sharing/Car Sharing/task/src/carsharing/db/"
-                    + fileName;
+    public Database(String url) {
+        DB_URL = url;
     }
 
     public void run(String str) {
