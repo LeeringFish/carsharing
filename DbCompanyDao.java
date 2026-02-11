@@ -16,8 +16,8 @@ public class DbCompanyDao implements CompanyDao {
 
     private final Database db;
 
-    public DbCompanyDao(String fileName) {
-        db = new Database(CONNECTION_URL + fileName);
+    public DbCompanyDao(Database db) {
+        this.db = db;
         db.run(CREATE_DB);
     }
 

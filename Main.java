@@ -13,8 +13,11 @@ public class Main {
             fileName = "test";
         }
 
+        String url = "jdbc:h2:~/IdeaProjects/Car Sharing/Car Sharing/task/src/carsharing/db/" + fileName;
+        Database db = new Database(url);
+
         Scanner scan = new Scanner(System.in);
-        CompanyDao companyDao = new DbCompanyDao(fileName);
+        CompanyDao companyDao = new DbCompanyDao(db);
         UserInterface ui = new UserInterface(scan, companyDao);
         ui.run();
     }
