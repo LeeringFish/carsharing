@@ -3,7 +3,6 @@ package carsharing;
 import java.util.List;
 
 public class DbCompanyDao implements CompanyDao {
-    private static final String CONNECTION_URL = "jdbc:h2:~/IdeaProjects/Car Sharing/Car Sharing/task/src/carsharing/db/";
     private static final String CREATE_DB = "CREATE TABLE IF NOT EXISTS COMPANY(" +
             "ID INT PRIMARY KEY AUTO_INCREMENT," +
             "NAME VARCHAR UNIQUE NOT NULL)";
@@ -28,12 +27,12 @@ public class DbCompanyDao implements CompanyDao {
 
     @Override
     public List<Company> findAll() {
-        return db.selectForList(SELECT_ALL);
+        return db.selectCompanyList(SELECT_ALL);
     }
 
     @Override
     public Company findById(int id) {
-        return db.select(String.format(SELECT, id));
+        return db.selectCompany(String.format(SELECT, id));
     }
 
     @Override

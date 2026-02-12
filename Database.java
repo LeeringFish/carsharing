@@ -25,8 +25,8 @@ public class Database {
         }
     }
 
-    public Company select(String query) {
-        List<Company> companies = selectForList(query);
+    public Company selectCompany(String query) {
+        List<Company> companies = selectCompanyList(query);
         if (companies.size() == 1) {
             return companies.getFirst();
         } else if (companies.isEmpty()) {
@@ -36,7 +36,7 @@ public class Database {
         }
     }
 
-    public List<Company> selectForList(String query) {
+    public List<Company> selectCompanyList(String query) {
         List<Company> companies = new ArrayList<>();
 
         try (Connection con = DriverManager.getConnection(DB_URL);

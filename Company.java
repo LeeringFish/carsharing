@@ -10,7 +10,6 @@ public class Company {
     }
 
     public Company(String name) {
-        this.id = 0;
         this.name = name;
     }
 
