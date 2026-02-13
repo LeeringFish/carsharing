@@ -36,6 +36,17 @@ public class Database {
         }
     }
 
+    public Car selectCar(String query) {
+        List<Car> cars = selectCarList(query);
+        if (cars.size() == 1) {
+            return cars.getFirst();
+        } else if (cars.isEmpty()) {
+            return null;
+        } else {
+            throw new IllegalStateException("Query returned more than one object");
+        }
+    }
+
     public List<Company> selectCompanyList(String query) {
         List<Company> companies = new ArrayList<>();
 

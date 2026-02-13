@@ -12,6 +12,7 @@ public class DbCarDao implements CarDao {
             "REFERENCES COMPANY(ID))";
 
     private static final String SELECT_BY_COMPANY = "SELECT * FROM CAR WHERE company_id = %d";
+    private static final String SELECT_BY_ID = "SELECT * FROM CAR WHERE id = %d";
     private static final String INSERT_DATA = "INSERT INTO CAR (name, company_id) VALUES ('%s', %d)";
 
     private final Database db;
@@ -27,6 +28,10 @@ public class DbCarDao implements CarDao {
 
     public List<Car> findCarsByCompany(int companyId) {
         return db.selectCarList(String.format(SELECT_BY_COMPANY, companyId));
+    }
+
+    public Car findById(int id) {
+        return db.selectCar(String.format(SELECT_BY_ID, id));
     }
 
 }

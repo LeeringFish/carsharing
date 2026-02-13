@@ -19,7 +19,8 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         CompanyDao companyDao = new DbCompanyDao(db);
         CarDao carDao = new DbCarDao(db);
-        UserInterface ui = new UserInterface(scan, companyDao, carDao);
+        CustomerDao customerDao = new DbCustomerDao(db);
+        UserInterface ui = new UserInterface(scan, companyDao, carDao, customerDao);
         ui.run();
     }
 }

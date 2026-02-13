@@ -13,7 +13,9 @@ public class DbCustomerDao implements CustomerDao {
     private static final String SELECT_ALL = "SELECT * FROM CUSTOMER";
     private static final String SELECT_RENTED = "SELECT rented_car_id FROM CUSTOMER " +
                                                 "WHERE rented_car_id IS NOT NULL";
-    private static final String UPDATE = "UPDATE CUSTOMER SET rented_car_id = '%s' " +
+    private static final String RENT_CAR = "UPDATE CUSTOMER SET rented_car_id = '%s' " +
+                                         "WHERE id = %s";
+    private static final String RETURN_CAR = "UPDATE CUSTOMER SET rented_car_id = NULL " +
                                          "WHERE id = %s";
 
     private final Database db;
@@ -37,11 +39,13 @@ public class DbCustomerDao implements CustomerDao {
     }
 
     public void rentCar(Customer customer, int carId) {
-        db.run(String.format(UPDATE, carId, customer.getId()));
+        db.run(String.format(RENT_CAR, carId, customer.getId()));
+        customer.setRentedCarId(carId);
     }
 
     public void returnCar(Customer customer) {
-        db.run(String.format(UPDATE, "NULL", customer.getId()));
+        db.run(String.format(RETURN_CAR, customer.getId()));
+        customer.setRentedCarId(0);
     }
 
 }

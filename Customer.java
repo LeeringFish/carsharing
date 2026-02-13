@@ -27,6 +27,9 @@ public class Customer {
         return rentedCarId;
     }
 
+    public void setRentedCarId(int carId) {
+        rentedCarId = carId;
+    }
 
     @Override
     public String toString() {
