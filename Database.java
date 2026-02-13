@@ -59,4 +59,25 @@ public class Database {
         return companies;
     }
 
+    public List<Car> selectCarList(String query) {
+        List<Car> cars = new ArrayList<>();
+
+        try (Connection con = DriverManager.getConnection(DB_URL);
+             Statement statement = con.createStatement();
+             ResultSet resultSetItem = statement.executeQuery(query)
+        ) {
+            while (resultSetItem.next()) {
+                int id = resultSetItem.getInt("id");
+                String name = resultSetItem.getString("name");
+                int company_id = resultSetItem.getInt("company_id");
+                cars.add(new Car(id, name, company_id));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return cars;
+    }
+
 }

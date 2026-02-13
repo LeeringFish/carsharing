@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface CarDao {
     void add(Car car);
-    List<Car> findCarByCompany(int companyId);
+    List<Car> findCarsByCompany(int companyId);
 }
