@@ -11,6 +11,11 @@ public class Car {
         this.companyId = companyId;
     }
 
+    public Car(String name, int companyId) {
+        this.name = name;
+        this.companyId = companyId;
+    }
+
     public int getId() {
         return id;
     }
