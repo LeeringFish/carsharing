@@ -80,4 +80,44 @@ public class Database {
         return cars;
     }
 
+    public List<Customer> selectCustomerList(String query) {
+        List<Customer> customers = new ArrayList<>();
+
+        try (Connection con = DriverManager.getConnection(DB_URL);
+             Statement statement = con.createStatement();
+             ResultSet resultSetItem = statement.executeQuery(query)
+        ) {
+            while (resultSetItem.next()) {
+                int id = resultSetItem.getInt("id");
+                String name = resultSetItem.getString("name");
+                int rentedCarId = resultSetItem.getInt("rented_car_id");
+                customers.add(new Customer(id, name, rentedCarId));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return customers;
+    }
+
+    public List<Integer> selectRentedIds(String query) {
+        List<Integer> ids = new ArrayList<>();
+
+        try (Connection con = DriverManager.getConnection(DB_URL);
+             Statement statement = con.createStatement();
+             ResultSet resultSetItem = statement.executeQuery(query)
+        ) {
+            while (resultSetItem.next()) {
+                int rentedCarId = resultSetItem.getInt("rented_car_id"); // RIGHT HERE
+                ids.add(rentedCarId);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return ids;
+    }
+
 }
